@@ -23,7 +23,7 @@ use Illuminate\Http\Request;
  * )
  * @OA\Server(
  *     description="Laravel Swagger API server",
- *     url="http://localhost/api"
+ *     url="http://localhost:8000/api"
  * )
  * @OA\SecurityScheme(
  *     type="apiKey",

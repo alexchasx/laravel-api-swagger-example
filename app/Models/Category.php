@@ -10,17 +10,16 @@ class Category extends Model
 {
     use HasFactory;
 
-    public bool $timestamps = false;
+    public $timestamps = false;
 
-    protected array $fillable = [
+    protected $fillable = [
         'parent_id',
         'slug',
         'title',
-        'description',
     ];
 
     public function articles(): HasMany
     {
-        return $this->hasMany(Article::class, 'rubric_id');
+        return $this->hasMany(Article::class);
     }
 }

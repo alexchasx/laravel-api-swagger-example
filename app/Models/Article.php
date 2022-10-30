@@ -10,7 +10,7 @@ class Article extends Model
 {
     use HasFactory;
     
-    public array $fillable = [
+    public $fillable = [
         'user_id',
         'rubric_id',
         'image',
@@ -27,11 +27,11 @@ class Article extends Model
         'meta_desc',
     ];
 
-    protected array $casts = [
+    protected $casts = [
         'is_published' => 'boolean',
     ];
 
-    protected array $dates = [
+    protected $dates = [
         'created_at',
         'updated_at',
         'published_at',
