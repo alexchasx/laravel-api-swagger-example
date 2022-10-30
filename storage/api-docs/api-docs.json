@@ -41,10 +41,58 @@
                         "description": "Everything is fine"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Create yet another article record",
+                "operationId": "articleCreate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ArticleStoreRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Everything is fine"
+                    }
+                },
+                "security": [
+                    {
+                        "app_id": []
+                    }
+                ]
             }
         }
     },
     "components": {
+        "schemas": {
+            "ArticleStoreRequest": {
+                "title": "Example storring request",
+                "description": "Some simple request createa as example",
+                "properties": {
+                    "title": {
+                        "title": "Title",
+                        "description": "Title of key for storring",
+                        "type": "string",
+                        "example": "random"
+                    },
+                    "content_raw": {
+                        "title": "Content",
+                        "description": "Title of key for storring",
+                        "type": "string",
+                        "example": "random"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "securitySchemes": {
             "X-APP-ID": {
                 "type": "apiKey",

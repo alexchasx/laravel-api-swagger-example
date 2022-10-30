@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleStoreRequest;
 use App\Models\Article;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -42,14 +43,35 @@ class ArticleController extends Controller
     }
 
     /**
+     * @OA\Post(
+     *     path="/articles",
+     *     operationId="articleCreate",
+     *     tags={"Post"},
+     *     summary="Create yet another article record",
+     *     security={
+     *       {"app_id": {}},
+     *     },
+     *     @OA\Response(
+     *         response="201",
+     *         description="Everything is fine",
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/ArticleStoreRequest")
+     *     )
+     * )
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\ArticleStoreRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(ArticleStoreRequest $request)
     {
-        //
+        $model = new Article();
+        $model->fill($request->all());
+        $model->save();
+
+        return response('', 201);
     }
 
     /**
